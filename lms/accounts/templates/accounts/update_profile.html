@@ -1,0 +1,185 @@
+{% extends "accounts/base.html" %}
+{% block content %}
+  <!-- Main content -->
+  <div class="main-content" id="panel">
+   
+    <div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Profile</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="/"><i cla
+                    ss="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="/accounts/">Accounts</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">updating profile</li>
+                </ol>
+              </nav>
+            </div>
+            <!-- <div class="col-lg-6 col-5 text-right">
+              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col">
+          <div class="card-wrapper">
+            <!-- Custom form validation -->
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header">
+                <h3 class="mb-0">Update Your Profile</h3>
+              </div>
+              <!-- Card body -->
+              <div class="card-body">
+                  <div class="text-center text-muted mb-4">
+                      {{form.non_field_errors}}
+              
+                                {% if messages %}
+                                <ul class="messages">
+                                {% for message in messages %}
+                                {% if message.tags == "success" %}
+                                <li style="color:green">{{ message }}</li>
+                                {% elif message.tags == "warning" %}
+                                <li style="color:orange">{{ message }}</li>
+                                {% else %}
+                                <li style="color:red">{{ message }}</li>
+                                {% endif %}
+                                {% endfor %}
+                                </ul>
+                                {% endif %}
+              </div>
+                <hr />
+            
+
+                <form class="needs-validation" action="/accounts/update_profile/" method="POST" novalidate>
+                  {% csrf_token %}
+                    <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                      <label class="form-control-label" for="validationCustom01">First name</label>
+                      <input type="text" class="form-control" value="{{user.first_name}}" name="first_name" id="validationCustom01" placeholder="First name" required>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label class="form-control-label"  for="validationCustom02">Last name</label>
+                      <input type="text" class="form-control" name="last_name" value="{{user.last_name}}" id="validationCustom02" placeholder="Last name" required>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label class="form-control-label"   for="validationCustomUsername">Username</label>
+                      <input type="text" class="form-control" name="username" value="{{user.username}}" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+                      <div class="invalid-feedback">
+                        Please choose a username.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-control-label"  for="validationCustom03">City</label>
+                      <input type="text" class="form-control" value="{{user.city}}" name="city" id="validationCustom03" placeholder="City" required>
+                      <div class="invalid-feedback">
+                        Please provide a valid city.
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label class="form-control-label" for="validationCustom04">Country</label>
+                      <input type="text" class="form-control" name="country" value="{{user.country}}" id="validationCustom04" placeholder="State" required>
+                      <div class="invalid-feedback">
+                        Please provide a valid state.
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label class="form-control-label"  for="validationCustom05">Country Code</label>
+                      <input type="text" class="form-control" value="{{user.country_code}}" name="country_code" id="validationCustom05" placeholder="Country Code" required>
+                      <div class="valid-feedback">
+                        Great!
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label class="form-control-label"  for="validationCustom03">Gender</label>
+                          <input type="text" class="form-control" name="gender" value="{{user.gender}}" id="validationCustom03" placeholder="Gender" required>
+                          <div class="invalid-feedback">
+                            Please provide a valid Gender
+                          </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label class="form-control-label"  for="validationCustom04">Marital Status</label>
+                          <input type="text" class="form-control" name="marital_status" value="{{user.marital_status}}" id="validationCustom04" placeholder="Marital Status" required>
+                          <div class="invalid-feedback">
+                            Please provide a valid Status.
+                          </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                          <label class="form-control-label"  for="validationCustom05">Address</label>
+                          <textarea class="form-control" name="address" id="validationCustom05" required>
+                              {{user.address}}
+                            </textarea>
+                          <div class="invalid-feedback">
+                            Please provide a valid address
+                          </div>
+                        </div>
+                      </div>
+<!-- 
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox mb-3">
+                      <input class="custom-control-input" id="invalidCheck" type="checkbox" value="" required>
+                      <label class="custom-control-label" for="invalidCheck">Agree to terms and conditions</label>
+                      <div class="invalid-feedback">
+                        You must agree before submitting.
+                      </div>
+                    </div>
+                  </div> -->
+                  <button class="btn btn-primary" type="submit">Update</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <footer class="footer pt-0">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6">
+              <div class="copyright text-center text-lg-left text-muted">
+                &copy; 2019 <a href="http://www.gwcl.com.gh/index.html" class="font-weight-bold ml-1" target="_blank">GHANA WATER COMPANY</a>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <li class="nav-item">
+                  <a href="http://www.gwcl.com.gh/index.html" class="nav-link" target="_blank">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a href="http://www.gwcl.com.gh/index.html" class="nav-link" target="_blank">Contact Us</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/license" class="nav-link" target="_blank">License</a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+        </footer>
+    </div>
+  </div>
+  {% endblock content %}

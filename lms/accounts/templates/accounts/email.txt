@@ -1,0 +1,5 @@
+Hello {{username}},
+Your Leave with this reason: "{{description}}",
+is {{status}}.
+
+Number of days applied for remaining: {{days_remaining}} day(s)

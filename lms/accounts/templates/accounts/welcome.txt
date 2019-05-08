@@ -1,0 +1,8 @@
+Hello {{username}},
+we welcome you aboard to our Leave Management System.
+
+Please visit this link: {{verification_link}} to verify your email address.
+
+You are required to do this in order to login.
+
+Thank you.

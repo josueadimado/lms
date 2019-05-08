@@ -1,0 +1,247 @@
+{% extends "accounts/base.html" %}
+{% block content %}
+
+  <!-- Main content -->
+  <div class="main-content" id="panel">
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Welcome to your Dashboard</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="/">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">My Dashboard</li>
+                </ol>
+              </nav>
+            </div>
+            <!-- <div class="col-lg-6 col-5 text-right">
+              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+
+    
+      <div class="row ">
+
+
+
+        <div class="col-lg-8 card-wrapper ct-example">
+          <!-- Styles -->
+          <div class="card">
+            <div class="card-body">
+              
+              <button onclick="location.href='/accounts/update_profile'" class="btn btn-icon btn-primary" type="button">
+                  <span class="btn-inner--icon"><i class="ni ni-single-02"></i></span>
+                  <span class="btn-inner--text">Update Pofile</span>
+              </button>
+
+              <button onclick="location.href='/leaves/application/'" class="btn btn-icon btn-primary" type="button">
+                <span class="btn-inner--icon"><i class="ni ni-send"></i></span>
+                <span class="btn-inner--text">Apply for Leave</span>
+              </button>
+              
+            <button onclick="location.href='/leaves/history/'" class="btn btn-icon btn-primary" type="button">
+                <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
+                <span class="btn-inner--text">Leave History</span>
+            </button>
+
+          </div>
+          </div>
+          </div>
+          {% if object %}
+          <div class="col-xl-3 col-md-4">
+
+              <div class="card bg-gradient-info border-0">
+                <!-- Card body -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0 text-white">Latest Approved Leave</h5>
+                      <span class="h2 font-weight-bold mb-0 text-white">{{object.days_remaining}}/{{object.days}} Remaining</span>
+                      <div class="progress progress-xs mt-3 mb-0">
+                        <div class="progress-bar bg-{{prog_status}}" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:{{progress}}%;"></div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <button type="button" class="btn btn-sm btn-neutral mr-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">Status: <span style="color:green">{{object.status}}</span></a>
+                        <a class="dropdown-item" href="#">Description: <span style="color:orange">{{object.description}}</span></a>
+                        <a class="dropdown-item" href="#">Days Remaining: {{object.days_remaining}}</a>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <a href="/history/{{object.id}}/" class="text-nowrap text-white font-weight-600">See details</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            {% else %}
+
+            <div class="col-xl-3 col-md-4">
+
+                <div class="card bg-gradient-info border-0">
+                  <!-- Card body -->
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0 text-white">{{user}}</h5>
+                        <span class="h5 font-weight-bold mb-0 text-white">
+                          <img src="/static/img/brand/lms.jpeg" style="height:auto;border-radius:100%;width:50%;">
+                        </span>
+                        <!-- <div class="progress progress-xs mt-3 mb-0">
+                          <div class="progress-bar bg-{{prog_status}}" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:{{progress}}%;"></div>
+                        </div> -->
+                      </div>
+                      <div class="col-auto">
+                        <button type="button" class="btn btn-sm btn-neutral mr-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <a class="dropdown-item" href="/accounts/update_profile/">Name: <span style="color:green">{{user.username}}</span></a>
+                          <a class="dropdown-item" href="/accounts/update_profile/">Email: <span style="color:orange">{{user.email}}</span></a>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mt-3 mb-0 text-sm">
+                      <a href="/accounts/update_profile/" class="text-nowrap text-white font-weight-600">See details</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+        {% endif %}
+
+          
+
+        
+        <div class="row">
+            <div class="col">
+
+              <div class="card">
+                <!-- Card header -->
+                <div class="card-header">
+                  <h3 class="mb-0">Leave Summary</h3>
+                  <p class="text-sm mb-0">
+                    All Your Leaves summary is here
+                  </p>
+                  <div class="text-center text-muted mb-4">
+                      {{form.non_field_errors}}
+              
+                                {% if messages %}
+                                <ul class="messages">
+                                {% for message in messages %}
+                                {% if message.tags == "success" %}
+                                <li style="color:green">{{ message }}</li>
+                                {% else %}
+                                <li style="color:red">{{ message }}</li>
+                                {% endif %}
+                                {% endfor %}
+                                </ul>
+                                {% endif %}
+                   </div>
+                </div>
+                <div class="table-responsive py-4">
+                  <table class="table table-flush" id="datatable-buttons">
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Leave Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <!-- <th>Description</th> -->
+                        <th>Status</th>
+                        <th>Admin Remark</th>
+                      </tr>
+                    </thead>
+
+                    <tfoot>
+                      <tr>
+                        <th>Leave Type</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <!-- <th>Description</th> -->
+                        <th>Status</th>
+                        <th>Admin Remark</th>
+                      </tr>
+                    </tfoot>
+
+                    <tbody>
+                      {% for leave in object_list %}
+                                        
+                  <tr>
+                      <td><a href="/history/{{leave.id}}/">{{leave.leavetype}}</a></td>
+                      <td>{{leave.fromDate}}</td>
+                      <td>{{leave.toDate}}</td>
+                      <!-- <td>{{leave.description}}</td> -->
+                      {% if leave.status == "Approved" %}
+                      <td style="color:green">{{leave.status}}</td>
+                      {% endif %}
+                      {% if leave.status == "Pending" %}
+                      <td style="color:orange">{{leave.status}}</td>
+                      {% endif %}
+                      {% if leave.status == "Disapproved" %}
+                      <td style="color:red">{{leave.status}}</td>
+                      {% endif %}
+                      <td>{{leave.adminRemark}}</td>
+                    </tr>
+                      
+  
+                  {% endfor %}
+                  </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+          
+      </div>
+
+
+
+      <!-- Footer -->
+      <footer class="footer pt-0">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6">
+              <div class="copyright text-center text-lg-left text-muted">
+                &copy; 2019 <a href="http://www.gwcl.com.gh/index.html" class="font-weight-bold ml-1" target="_blank">GHANA WATER COMPANY</a>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <li class="nav-item">
+                  <a href="http://www.gwcl.com.gh/index.html" class="nav-link" target="_blank">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a href="http://www.gwcl.com.gh/index.html" class="nav-link" target="_blank">Contact Us</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/license" class="nav-link" target="_blank">License</a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+        </footer>
+    </div>
+  </div>
+  
+
+ 
+  {% endblock content %}
