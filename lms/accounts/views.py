@@ -654,23 +654,26 @@ class StartChat:
                     checker += i + ""
 
         checker = checker.lower()
-        # company=Company.objects.get(robot_name=robot_name)
         company = "pywe"
+	
+	""" Below, the bot_ratio=0.6 will determine how close what a user types has to be
+	with what we have in our database in order to conclude that is what the user wants to say.
+	For example, if we have 'hello, how are you?' in our database and a user comes to 
+	type 'how are you', the function called get_specific() will go to the database and fetch
+	all our existing questions and compare them with what the user types, all the questions
+	from the database that are as close to the one the user typed as much as 0.6 or 60% will qulaify
+	to be part of what the user typed, but the one which has the highest percentage among these
+	will be chosen. If they are more than one, one of them will randomly be chosen.
+	comparing 'hello, how are you?' to 'how are you' should return about 0.7586206896551724 match:
+	This is done by the python function defined here:
+	def ratio_match(user_input,existing):
+        	from difflib import SequenceMatcher as sm
+        	return sm(None,user,existing).ratio()
+	and that is about 76% match rate. Therefore the previosly recorded answer for the question:
+	'helllo, how are you?' can also be given to the question 'how are you'
+	"""
         res = self.get_specific(tokens=checker,robot_name=robot_name,bot_ratio=0.6)
-        # if len(res) == 0:
-        #     company=Company.objects.get(robot_name="pywebot")
-        #     res = self.get_specific(tokens=checker,robot_name="pywebot",bot_ratio=company.robot_ratio)
-
-        # try:
-        #     company=Company.objects.get(robot_name=robot_name)
-        # except:
-        #     company=""
-        # else:
-
-            # company.robot_traffic += 1
-            # company.save()
-            # company = company.name
-        return Parser().parse(res=res,snt=tokens,company="pywe",robot_name=robot_name)
+        return Parser().parse(res=res,snt=tokens,company=company,robot_name=robot_name)
 
 from django.views.decorators.csrf import csrf_exempt
 
