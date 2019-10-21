@@ -82,6 +82,6 @@ update==0.0.1
 urllib3==1.24.1
 WeasyPrint==44
 webencodings==0.5.1
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 whitenoise==4.1.2
 zope.interface==4.6.0
