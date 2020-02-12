@@ -17,7 +17,7 @@ cssselect2==0.2.1
 cycler==0.10.0
 daphne==2.2.4
 defusedxml==0.5.0
-Django==2.1.5
+Django==2.2.10
 django-ckeditor==5.6.1
 django-cors-headers==2.4.0
 django-froala-editor==2.9.1.post2
