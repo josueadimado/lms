@@ -6,7 +6,7 @@ attrs==18.2.0
 autobahn==19.1.1
 Automat==0.7.0
 cairocffi==0.9.0
-CairoSVG==2.2.1
+CairoSVG==2.5.1
 certifi==2018.11.29
 cffi==1.11.5
 channels==2.1.6
