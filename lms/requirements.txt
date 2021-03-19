@@ -26,7 +26,7 @@ django-mysql==2.4.1
 django-online-users==0.3
 django-rest-auth==0.9.3
 django-tastypie==0.14.2
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 djangorestframework-simplejwt==3.3
 drfapikey==0.0.3
