@@ -69,7 +69,7 @@ redis==2.10.6
 requests==2.11.1
 requests-oauthlib==1.2.0
 requests-toolbelt==0.7.0
-rsa==4.0
+rsa==4.7
 scipy==1.2.1
 six==1.12.0
 social-auth-app-django==3.1.0
