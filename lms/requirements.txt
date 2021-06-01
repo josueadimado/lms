@@ -79,7 +79,7 @@ tinycss2==0.6.1
 Twisted==18.9.0
 txaio==18.8.1
 update==0.0.1
-urllib3==1.24.1
+urllib3==1.26.5
 WeasyPrint==44
 webencodings==0.5.1
 Werkzeug==0.14.1
