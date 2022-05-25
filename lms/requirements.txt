@@ -54,7 +54,7 @@ pyasn1-modules==0.2.4
 pycparser==2.19
 pycryptodome==3.4.3
 PyHamcrest==1.9.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 PyMySQL==0.9.3
 pyparsing==2.3.1
 Pyphen==0.9.5
